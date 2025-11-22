@@ -27,7 +27,15 @@ func _process(delta: float) -> void:
 
 
 func shoot_burst() -> void:
-	pass # TODO
+	ammo -= burst_fire_amount
+
+	var shoot_dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
+
+	for n in (burst_fire_amount - 1):
+		var bullet_instance: Area2D = bullet.instantiate()
+		bullet_instance.global_position = global_position
+		bullet_instance.global_rotation = shoot_dir.angle() + deg_to_rad((randf() * 2 - 1.0) * burst_spread)
+		add_child(bullet_instance)
 
 
 func shoot_stream() -> void:
