@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://jwru712ywrdd"]
+[gd_scene load_steps=6 format=3 uid="uid://jwru712ywrdd"]
 
 [ext_resource type="Texture2D" uid="uid://dljd8dug0yp8u" path="res://sprites/test.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cifnkxkiww2qq" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://3o4hvtd3vx7y" path="res://scripts/gun.gd" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://cpaitt3vgil4d" path="res://scenes/bullet.tscn" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 radius = 31.0
@@ -19,4 +21,8 @@ shape = SubResource("CircleShape2D_3vyb7")
 texture = ExtResource("1_3vyb7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -1)
+zoom = Vector2(0.5, 0.5)
+
+[node name="Gun" type="Node2D" parent="."]
+script = ExtResource("3_qhqgy")
+bullet = ExtResource("4_dqkch")
