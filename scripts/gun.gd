@@ -15,7 +15,7 @@ var stream_fire_rate: float = 20.0
 
 func _process(delta: float) -> void:
 	timer += delta
-	if Input.is_action_pressed("shoot_1") and timer > (1.0/burst_fire_rate) and ammo > burst_fire_amount:
+	if Input.is_action_pressed("shoot_1") and timer > (1.0/burst_fire_rate) and ammo >= burst_fire_amount:
 		shoot_burst()
 		timer = 0.0
 	
