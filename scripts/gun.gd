@@ -3,13 +3,13 @@ extends Node2D
 @export var bullet: PackedScene = null
 @export var fire_rate: float = 20.0
 
+@export var burst_fire_rate: float = 2.0
+@export var burst_spread: float = 20.0	# in degrees
+@export var burst_fire_amount: int = 10
+
+@export var stream_fire_rate: float = 20.0
+
 var timer: float = 0.0
-
-var burst_fire_rate: float = 2.0
-var burst_spread: float = 20.0	# in degrees
-var burst_fire_amount: int = 10
-
-var stream_fire_rate: float = 20.0
 
 
 func _process(delta: float) -> void:

@@ -27,6 +27,8 @@ zoom = Vector2(0.5, 0.5)
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("3_qhqgy")
 bullet = ExtResource("4_dqkch")
+burst_fire_rate = 4.0
+burst_fire_amount = 5
 
 [node name="Grabber" type="Node2D" parent="."]
 script = ExtResource("5_qlg0r")

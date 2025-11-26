@@ -13,22 +13,20 @@ line_spacing = 0.0
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="HUDLayer" type="CanvasLayer"]
-
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ahhtf")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_toqtt")
 
-[node name="AmmoLabel" type="Label" parent="HUD/MarginContainer"]
+[node name="AmmoLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
 text = "ammoammoammo"
 label_settings = SubResource("LabelSettings_toqtt")
