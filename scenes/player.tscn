@@ -29,8 +29,12 @@ script = ExtResource("3_qhqgy")
 bullet = ExtResource("4_dqkch")
 
 [node name="Grabber" type="Node2D" parent="."]
-position = Vector2(35, 1)
 script = ExtResource("5_qlg0r")
 
 [node name="RayCast2D" type="RayCast2D" parent="Grabber"]
+position = Vector2(31, 0)
 target_position = Vector2(50, 0)
+collision_mask = 2
+
+[node name="GrabPoint" type="Node2D" parent="Grabber"]
+position = Vector2(70, 0)
