@@ -21,6 +21,7 @@ tile_map_data = PackedByteArray("AAD2//X/AAABAAMAAAD3//X/AAACAAMAAAD3//T/AAADAAE
 tile_set = ExtResource("2_rwgxs")
 
 [node name="Boundary" type="StaticBody2D" parent="."]
+collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
 position = Vector2(0, 10000)

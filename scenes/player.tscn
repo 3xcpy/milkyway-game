@@ -33,8 +33,8 @@ script = ExtResource("5_qlg0r")
 
 [node name="RayCast2D" type="RayCast2D" parent="Grabber"]
 position = Vector2(31, 0)
-target_position = Vector2(50, 0)
-collision_mask = 2
+target_position = Vector2(128, 0)
+collision_mask = 6
 
 [node name="GrabPoint" type="Node2D" parent="Grabber"]
 position = Vector2(70, 0)

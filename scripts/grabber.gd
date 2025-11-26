@@ -7,7 +7,7 @@ var held: Node2D = null
 
 
 func _physics_process(_delta: float) -> void:
-	var dir: Vector2 = get_global_mouse_position() - global_position
+	var dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	global_rotation = dir.angle()
 
 	if Input.is_action_just_pressed("grab"):
@@ -20,9 +20,7 @@ func _physics_process(_delta: float) -> void:
 					held = col
 		else:
 			assert(held.has_method("ungrab"), "Enemies need to be ungrabbable")
-			# TODO: throw
-			# do I put the throwing logic here or in the ungrab func?
-			held.ungrab()
+			held.ungrab(dir)
 			held = null
 
 	if held != null:
