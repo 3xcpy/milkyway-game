@@ -7,6 +7,7 @@
 size = Vector2(128, 128)
 
 [node name="Collector" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_ab70d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -14,5 +15,11 @@ texture = ExtResource("1_hqoo7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ab70d")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 96.0
+vertices = PackedVector2Array(-64, -66, 64, -66, 66, 65, -64, 65)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

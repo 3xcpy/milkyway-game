@@ -1,19 +1,50 @@
 extends CharacterBody2D
 
-@export var decel: float = 1.0
+@export var speed: float = 200.0
+@export var accel: float = 50.0
+@export var decel: float = 10.0
+@export var stun_decel: float = 1.0
 
 @export var health: float = 5.0
 @export var throw_force: float = 1000.0
 
+@export var stopping_distance: float = 96.0
+
 var grabbed: bool = false
+var stunned: bool = false
 
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+
+@onready var nav_timer: Timer = $NavTimer
+@onready var stun_timer: Timer = $StunTimer
+
 
 func _physics_process(delta: float) -> void:
-	if !grabbed:
+	if !grabbed and stunned:
+		velocity = lerp(velocity, Vector2.ZERO, stun_decel * delta)
+	elif !grabbed:
+		walk(delta)
+
+	move_and_slide()
+
+
+func walk(delta: float) -> void:
+	if nav_agent.distance_to_target() <= stopping_distance:
 		velocity = lerp(velocity, Vector2.ZERO, decel * delta)
-		move_and_slide()
+		return
+
+	var dir = to_local(nav_agent.get_next_path_position()).normalized()
+	var desired_vel = dir * speed
+	var new_vel = Vector2.ZERO
+
+	if velocity.length() < desired_vel.length():
+		new_vel = lerp(velocity, desired_vel, accel * delta)
+	else:
+		new_vel = lerp(velocity, Vector2.ZERO, decel * delta)
+	
+	velocity = new_vel
 
 
 func damage(dmg: float) -> void:
@@ -25,15 +56,26 @@ func damage(dmg: float) -> void:
 func grab() -> void:
 	collider.disabled = true
 	grabbed = true
+	stun_timer.stop()
 
 
 func ungrab(dir: Vector2) -> void:
 	collider.disabled = false
 	velocity = dir * throw_force
 	grabbed = false
+	stun_timer.start()
+	stunned = true
 
 
 func consume() -> void:
 	# TODO: add death and animation perchance?
 	print("Consumed")
-	pass
+
+
+func _on_stun_timer_timeout() -> void:
+	print("stun stopped")
+	stunned = false
+
+func _on_nav_timer_timeout() -> void:
+	var target = get_tree().get_first_node_in_group("Player")
+	nav_agent.target_position = target.global_position

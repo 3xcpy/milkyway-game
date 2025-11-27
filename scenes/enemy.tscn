@@ -8,7 +8,7 @@ radius = 33.01515
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 5
-collision_layer = 7
+collision_layer = 6
 script = ExtResource("1_md0e3")
 health = 2.0
 
@@ -17,3 +17,17 @@ shape = SubResource("CircleShape2D_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7p1mj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="NavTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
