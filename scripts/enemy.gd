@@ -44,7 +44,10 @@ func walk(delta: float) -> void:
 	else:
 		new_vel = lerp(velocity, Vector2.ZERO, decel * delta)
 	
-	velocity = new_vel
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(new_vel)
+	else:
+		velocity = new_vel
 
 
 func damage(dmg: float) -> void:
@@ -79,3 +82,6 @@ func _on_stun_timer_timeout() -> void:
 func _on_nav_timer_timeout() -> void:
 	var target = get_tree().get_first_node_in_group("Player")
 	nav_agent.target_position = target.global_position
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
