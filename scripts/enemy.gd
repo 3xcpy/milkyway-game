@@ -70,9 +70,15 @@ func ungrab(dir: Vector2) -> void:
 	stunned = true
 
 
-func consume() -> void:
-	# TODO: add death and animation perchance?
-	print("Consumed")
+func consume() -> bool:
+	if stunned:
+		die()
+		return true
+	return false
+
+
+func die() -> void:
+	queue_free()
 
 
 func _on_stun_timer_timeout() -> void:
