@@ -8,13 +8,21 @@ extends CharacterBody2D
 @export var time_to_heal: float = 2.0
 
 var health: int = max_health
+var heal_timer: float = 0.0
+var heal: bool = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	Global.health = health
 
 
 func _physics_process(delta: float) -> void:
+	if heal:
+		heal_timer += delta
+		if heal_timer >= time_to_heal:
+			health += 1
+			if health >= max_health:
+				heal = false
 	move(delta)
 
 
@@ -32,3 +40,8 @@ func move(delta: float) -> void:
 	
 	velocity = new_vel
 	move_and_slide()
+
+
+func damage(dmg: int) -> void:
+	health -= dmg
+	heal = true
