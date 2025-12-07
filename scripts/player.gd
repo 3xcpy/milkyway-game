@@ -4,6 +4,15 @@ extends CharacterBody2D
 @export var accel: float = 50.0
 @export var decel: float = 10.0
 
+@export var max_health: int = 5
+@export var time_to_heal: float = 2.0
+
+var health: int = max_health
+
+
+func _process(delta: float) -> void:
+	Global.health = health
+
 
 func _physics_process(delta: float) -> void:
 	move(delta)
