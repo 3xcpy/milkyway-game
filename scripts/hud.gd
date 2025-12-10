@@ -9,11 +9,11 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	set_ammo(Global.ammo)
-	set_score(Global.score)
+	set_score(Global.time)
 
 
 func set_ammo(val: int) -> void:
 	ammo_label.text = str(val)
 
-func set_score(val: int) -> void:
-	score_label.text = str(val)
+func set_score(val: float) -> void:
+	score_label.text = str(snapped(val, 0.01))

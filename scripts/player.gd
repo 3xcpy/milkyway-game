@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal dead()
+
 @export var speed: float = 100.0
 @export var accel: float = 50.0
 @export var decel: float = 10.0
@@ -45,3 +47,5 @@ func move(delta: float) -> void:
 func damage(dmg: int) -> void:
 	health -= dmg
 	heal = true
+	if health <= 0:
+		dead.emit()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://0u4hcwuaucli"]
 
 [ext_resource type="Script" uid="uid://do2hmsuesmni4" path="res://scripts/hud.gd" id="1_ahhtf"]
-[ext_resource type="Script" uid="uid://daj66jltu7eqo" path="res://scenes/health_indicator.gd" id="2_5ysmq"]
+[ext_resource type="Script" uid="uid://daj66jltu7eqo" path="res://scripts/health_indicator.gd" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://br7npprvbxm57" path="res://sprites/heart.png" id="2_oo0fn"]
 
 [sub_resource type="Theme" id="Theme_toqtt"]

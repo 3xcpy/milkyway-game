@@ -6,3 +6,4 @@
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_devoi")
 enemy_scene = ExtResource("2_xl0gr")
+max_spawn_delay = 2.0

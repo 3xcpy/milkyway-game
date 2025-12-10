@@ -14,11 +14,12 @@ var grabbed: bool = false
 var stunned: bool = false
 
 @onready var collider: CollisionShape2D = $CollisionShape2D
-
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
 @onready var nav_timer: Timer = $NavTimer
 @onready var stun_timer: Timer = $StunTimer
+
+@onready var sprite: Sprite2D = $Sprite2D
 
 
 func _physics_process(delta: float) -> void:
@@ -61,6 +62,8 @@ func grab() -> void:
 	grabbed = true
 	stun_timer.stop()
 
+	sprite.modulate.a = 0.3
+
 
 func ungrab(dir: Vector2) -> void:
 	collider.disabled = false
@@ -68,6 +71,7 @@ func ungrab(dir: Vector2) -> void:
 	grabbed = false
 	stun_timer.start()
 	stunned = true
+	sprite.modulate.a = 1.0
 
 
 func consume() -> bool:

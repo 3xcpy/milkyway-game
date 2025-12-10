@@ -1,8 +1,8 @@
 extends Control
 
+signal return_to_menu()
 
 var paused: bool = false
-
 var saved_window_mode = null
 
 
@@ -25,6 +25,11 @@ func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
 	else:
 		DisplayServer.window_set_mode(saved_window_mode)
 
+
 func _on_quit_button_button_down() -> void:
-	# TODO: saving?
 	get_tree().quit()
+
+
+func _on_return_to_menu_button_button_down() -> void:
+	get_tree().paused = false
+	return_to_menu.emit()

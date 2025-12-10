@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://jwru712ywrdd"]
+[gd_scene load_steps=8 format=3 uid="uid://jwru712ywrdd"]
 
 [ext_resource type="Texture2D" uid="uid://dljd8dug0yp8u" path="res://sprites/test.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cifnkxkiww2qq" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://3o4hvtd3vx7y" path="res://scripts/gun.gd" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cpaitt3vgil4d" path="res://scenes/bullet.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://xav05lwyhhpv" path="res://scripts/grabber.gd" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://ddyylrx1ue3gd" path="res://sprites/gun.png" id="6_tuyoq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 radius = 31.0
@@ -41,3 +42,7 @@ collision_mask = 6
 
 [node name="GrabPoint" type="Node2D" parent="Grabber"]
 position = Vector2(70, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Grabber"]
+position = Vector2(39, 1)
+texture = ExtResource("6_tuyoq")
