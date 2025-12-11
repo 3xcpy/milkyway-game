@@ -16,8 +16,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(min_spawn_delay)
-	print(max_spawn_delay)
 	timer += delta
 	if timer >= spawn_delay:
 		spawn()

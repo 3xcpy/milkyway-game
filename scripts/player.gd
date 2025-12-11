@@ -7,7 +7,7 @@ signal dead()
 @export var decel: float = 10.0
 
 @export var max_health: int = 5
-@export var time_to_heal: float = 2.0
+@export var time_to_heal: float = 7.0
 
 var health: int = max_health
 var heal_timer: float = 0.0
@@ -24,7 +24,9 @@ func _physics_process(delta: float) -> void:
 		if heal_timer >= time_to_heal:
 			health += 1
 			if health >= max_health:
+				health = max_health
 				heal = false
+				heal_timer = 0.0
 	move(delta)
 
 
@@ -45,6 +47,7 @@ func move(delta: float) -> void:
 
 
 func damage(dmg: int) -> void:
+	print("Damaged!!!")
 	health -= dmg
 	heal = true
 	if health <= 0:

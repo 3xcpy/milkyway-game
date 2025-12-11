@@ -15,6 +15,7 @@ var stunned: bool = false
 
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var attack: Attack = $Attack
 
 @onready var nav_timer: Timer = $NavTimer
 @onready var stun_timer: Timer = $StunTimer
@@ -32,8 +33,9 @@ func _physics_process(delta: float) -> void:
 
 
 func walk(delta: float) -> void:
-	if nav_agent.distance_to_target() <= stopping_distance:
+	if nav_agent.distance_to_target() <= stopping_distance or attack.active:
 		velocity = lerp(velocity, Vector2.ZERO, decel * delta)
+		attack.attack()
 		return
 
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
@@ -61,6 +63,7 @@ func grab() -> void:
 	collider.disabled = true
 	grabbed = true
 	stun_timer.stop()
+	attack.active = false
 
 	sprite.modulate.a = 0.3
 
@@ -86,7 +89,6 @@ func die() -> void:
 
 
 func _on_stun_timer_timeout() -> void:
-	print("stun stopped")
 	stunned = false
 
 func _on_nav_timer_timeout() -> void:

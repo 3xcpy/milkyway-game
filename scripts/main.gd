@@ -25,5 +25,6 @@ func _on_game_exit_to_main_menu() -> void:
 
 
 func _on_game_game_over(_score: float) -> void:
+	print("GAME OVER")
 	game_instance.queue_free()
 	main_menu.visible = true
