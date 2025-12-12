@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c871x2y3ibf5l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iubwi"]
+
+[resource]
+CheckBox/colors/checkbox_checked_color = Color(1, 1, 1, 1)
+CheckBox/colors/icon_disabled_color = Color(0, 0, 0, 1)
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_iubwi")

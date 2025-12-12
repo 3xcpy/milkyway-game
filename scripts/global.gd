@@ -2,6 +2,9 @@ extends Node
 
 var hud: HUD = null
 
+var saved_window_mode = null
+var fullscreen = false
+
 var score: int = 0
 var time: float = 0.0
 var ammo: int = 100

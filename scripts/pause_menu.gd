@@ -3,7 +3,11 @@ extends Control
 signal return_to_menu()
 
 var paused: bool = false
-var saved_window_mode = null
+
+
+func _ready() -> void:
+	if Global.fullscreen:
+		$FullscreenCheckBox.button_pressed = true
 
 
 func _process(_delta: float) -> void:
@@ -15,11 +19,14 @@ func _process(_delta: float) -> void:
 
 
 func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		saved_window_mode = DisplayServer.window_get_mode()
+	if toggled_on and !Global.fullscreen:
+		Global.saved_window_mode = DisplayServer.window_get_mode()
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(saved_window_mode)
+		Global.fullscreen = true
+		print(Global.saved_window_mode)
+	elif !toggled_on and Global.fullscreen:
+		DisplayServer.window_set_mode(Global.saved_window_mode)
+		Global.fullscreen = false
 
 
 func _on_quit_button_button_up() -> void:

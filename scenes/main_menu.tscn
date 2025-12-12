@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbxk6yryi0x21"]
+[gd_scene load_steps=11 format=3 uid="uid://dbxk6yryi0x21"]
 
 [ext_resource type="Script" uid="uid://b78i6qtter785" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://dsunc8jcntcoa" path="res://sprites/main_menu_bg.png" id="2_bqqt6"]
@@ -74,6 +74,18 @@ _data = {
 &"skew": SubResource("Animation_8ln24"),
 &"spin": SubResource("Animation_bqqt6")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
+
+[sub_resource type="Theme" id="Theme_bqqt6"]
+CheckBox/colors/checkbox_checked_color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+CheckBox/colors/font_color = Color(0.10747949, 0.10747983, 0.107479595, 1)
+CheckBox/colors/font_focus_color = Color(0.21230456, 0.21230492, 0.21230534, 1)
+CheckBox/colors/font_hover_color = Color(0.2303147, 0.23031497, 0.23031548, 1)
+CheckBox/colors/font_hover_pressed_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+CheckBox/colors/font_pressed_color = Color(0.14406255, 0.14406255, 0.14406249, 1)
+CheckBox/colors/icon_disabled_color = Color(0, 0, 0, 1)
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_bqqt6")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -166,5 +178,15 @@ libraries = {
 }
 autoplay = "spin"
 
+[node name="FullscreenCheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 15.0
+offset_right = 627.0
+offset_bottom = 46.0
+theme = SubResource("Theme_bqqt6")
+text = "Fullscreen"
+
 [connection signal="button_up" from="VBoxContainer/PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="button_up" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_button_up"]
+[connection signal="toggled" from="FullscreenCheckBox" to="." method="_on_fullscreen_check_box_toggled"]
