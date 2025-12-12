@@ -6,12 +6,15 @@ signal dead()
 @export var accel: float = 50.0
 @export var decel: float = 10.0
 
-@export var max_health: int = 5
-@export var time_to_heal: float = 7.0
+@export var max_health: int = 3
+@export var time_to_heal: float = 10.0
 
 var health: int = max_health
 var heal_timer: float = 0.0
 var heal: bool = false
+
+@onready var iframe_timer: Timer = $IFrameTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _process(_delta: float) -> void:
@@ -47,8 +50,15 @@ func move(delta: float) -> void:
 
 
 func damage(dmg: int) -> void:
-	print("Damaged!!!")
-	health -= dmg
-	heal = true
-	if health <= 0:
-		dead.emit()
+	if iframe_timer.is_stopped():
+		iframe_timer.start()
+		animation_player.play("flicker")
+
+		health -= dmg
+		heal = true
+		if health <= 0:
+			dead.emit()
+
+
+func _on_i_frame_timer_timeout() -> void:
+	animation_player.play("RESET")

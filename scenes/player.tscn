@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jwru712ywrdd"]
+[gd_scene load_steps=11 format=3 uid="uid://jwru712ywrdd"]
 
 [ext_resource type="Texture2D" uid="uid://dljd8dug0yp8u" path="res://sprites/test.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cifnkxkiww2qq" path="res://scripts/player.gd" id="1_g2els"]
@@ -9,6 +9,44 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 radius = 31.0
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "flicker"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1.0, 0.1, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
+_data = {
+&"RESET": SubResource("Animation_fjrip"),
+&"flicker": SubResource("Animation_tuyoq")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 10
@@ -46,3 +84,13 @@ position = Vector2(70, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Grabber"]
 position = Vector2(39, 1)
 texture = ExtResource("6_tuyoq")
+
+[node name="IFrameTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_smehm")
+}
+
+[connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
