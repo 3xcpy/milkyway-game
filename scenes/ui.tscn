@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://74pemylvwywk" path="res://scenes/pause_menu.tscn" id="2_x4jx1"]
 
 [node name="UI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_yev5y")
 
 [node name="HUD" parent="." instance=ExtResource("1_nt7q6")]

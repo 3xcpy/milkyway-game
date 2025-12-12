@@ -12,3 +12,4 @@ script = ExtResource("1_lnu2h")
 [node name="UI" parent="." instance=ExtResource("2_lnu2h")]
 
 [connection signal="game_over" from="World" to="." method="_on_world_game_over"]
+[connection signal="return_to_menu" from="UI" to="." method="_on_ui_return_to_menu"]

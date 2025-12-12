@@ -12,8 +12,8 @@ func update_score_label(score: float) -> void:
 		score_label.text = "Best Score: " + str(snapped(score, 0.01))
 
 
-func _on_play_button_button_down() -> void:
+func _on_play_button_button_up() -> void:
 	start_game.emit()
 
-func _on_quit_button_button_down() -> void:
+func _on_quit_button_button_up() -> void:
 	get_tree().quit()
