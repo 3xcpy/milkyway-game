@@ -25,8 +25,6 @@ func _enter_tree() -> void:
 	# Get the polyphonic playback stream to play sounds
 	playback = player.get_stream_playback()
 
-	get_tree().node_added.connect(_on_node_added)
-
 
 func _on_node_added(node:Node) -> void:
 	if node is Button:

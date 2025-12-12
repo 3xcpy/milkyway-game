@@ -23,7 +23,6 @@ func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
 		Global.saved_window_mode = DisplayServer.window_get_mode()
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		Global.fullscreen = true
-		print(Global.saved_window_mode)
 	elif !toggled_on and Global.fullscreen:
 		DisplayServer.window_set_mode(Global.saved_window_mode)
 		Global.fullscreen = false
