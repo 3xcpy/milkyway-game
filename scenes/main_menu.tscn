@@ -153,7 +153,7 @@ libraries = {
 autoplay = "spin"
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(372.0001, 75.00006)
+position = Vector2(368, 81)
 texture = ExtResource("3_wu84c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D2"]
@@ -163,7 +163,7 @@ libraries = {
 autoplay = "skew"
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(533, 284.9996)
+position = Vector2(531, 281)
 texture = ExtResource("3_wu84c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D3"]
