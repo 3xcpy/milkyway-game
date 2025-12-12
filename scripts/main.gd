@@ -2,9 +2,20 @@ extends Node
 
 @export var game: PackedScene = null
 
+var config := ConfigFile.new()
 var game_instance: Game = null
 
 @onready var main_menu: MainMenu = $MainMenu
+
+
+func _ready() -> void:
+	var err = config.load("user://score.cfg")
+	if err != OK:
+		main_menu.update_score_label(0.0)
+		config.set_value("score", "score", 0.0)
+		config.save("user://score.cfg")
+	else:
+		main_menu.update_score_label(config.get_value("score", "score"))
 
 
 func start_game() -> void:
@@ -24,7 +35,11 @@ func _on_game_exit_to_main_menu() -> void:
 	main_menu.visible = true
 
 
-func _on_game_game_over(_score: float) -> void:
+func _on_game_game_over(score: float) -> void:
 	print("GAME OVER")
 	game_instance.queue_free()
 	main_menu.visible = true
+	if config.get_value("score", "score") < score:
+		config.set_value("score", "score", score)
+		config.save("user://score.cfg")
+		main_menu.update_score_label(score)

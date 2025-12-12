@@ -23,10 +23,10 @@ func _physics_process(delta: float) -> void:
 		heal_timer += delta
 		if heal_timer >= time_to_heal:
 			health += 1
+			heal_timer = 0.0
 			if health >= max_health:
 				health = max_health
 				heal = false
-				heal_timer = 0.0
 	move(delta)
 
 
