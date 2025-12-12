@@ -11,6 +11,9 @@ extends Node2D
 
 var timer: float = 0.0
 
+@onready var stream_shot_sound: AudioStreamPlayer = $StreamShot
+@onready var spread_shot_sound: AudioStreamPlayer = $SpreadShot
+
 
 func _process(delta: float) -> void:
 	timer += delta
@@ -33,6 +36,8 @@ func shoot_burst() -> void:
 		bullet_instance.global_position = global_position
 		bullet_instance.global_rotation = shoot_dir.angle() + deg_to_rad((randf() * 2 - 1.0) * burst_spread)
 		add_child(bullet_instance)
+	
+	spread_shot_sound.play()
 
 
 func shoot_stream() -> void:
@@ -42,3 +47,4 @@ func shoot_stream() -> void:
 	bullet_instance.global_position = global_position
 	bullet_instance.global_rotation = shoot_dir.angle()
 	add_child(bullet_instance)
+	stream_shot_sound.play()

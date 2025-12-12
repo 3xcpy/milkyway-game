@@ -16,6 +16,8 @@ var heal: bool = false
 @onready var iframe_timer: Timer = $IFrameTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var hurt_sound: AudioStreamPlayer = $Hurt
+
 
 func _process(_delta: float) -> void:
 	Global.health = health
@@ -58,6 +60,8 @@ func damage(dmg: int) -> void:
 		heal = true
 		if health <= 0:
 			dead.emit()
+		else:
+			hurt_sound.play()	
 
 
 func _on_i_frame_timer_timeout() -> void:

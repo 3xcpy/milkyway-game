@@ -21,6 +21,7 @@ var stunned: bool = false
 @onready var stun_timer: Timer = $StunTimer
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var hurt_sound: AudioStreamPlayer = $EnemyHurt
 
 
 func _physics_process(delta: float) -> void:
@@ -57,6 +58,8 @@ func damage(dmg: float) -> void:
 	health -= dmg
 	if health <= 0.0:
 		queue_free()
+	else:
+		hurt_sound.play()
 
 
 func grab() -> void:
