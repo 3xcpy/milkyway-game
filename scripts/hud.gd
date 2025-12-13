@@ -16,4 +16,5 @@ func set_ammo(val: int) -> void:
 	ammo_label.text = str(val)
 
 func set_score(val: float) -> void:
-	score_label.text = str(snapped(val, 0.01))
+	score_label.text = str(snapped(val, 0.01)).pad_decimals(2) # Thank you Lampion22 :)
+
